@@ -1,11 +1,15 @@
 import pandas as pd
+from preprocessing import OneHotEncoder
 from linearregression import LinearRegressor
-from sklearn.preprocessing import StandardScaler
 
-inputs = pd.read_csv('linear_regression_data.csv')
-X = inputs.iloc[:, :-1].values
+import numpy as np
+
+inputs = pd.read_csv('sample_employee_data.csv')
+X = inputs.iloc[:, 1:-1].values
 y = inputs.iloc[:, -1].values
-scaler = StandardScaler()
-X = scaler.fit_transform(X)
-regressor = LinearRegressor()
-regressor.fit(X, y)
+encoder = OneHotEncoder()
+
+X = encoder.fit_transform(X,1)
+X = encoder.fit_transform(X,1)
+print(X)
+

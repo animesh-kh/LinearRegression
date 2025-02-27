@@ -10,3 +10,6 @@ class LinearRegressor:
         XX_t_inverse = np.linalg.inv(XX_t)
         XX_t_inverse_X_T = np.dot(XX_t_inverse, X_transpose)
         self.Eq = np.dot(XX_t_inverse_X_T, y)
+    def predict(self, X):
+        X = np.c_[np.ones(X.shape[0]), X]
+        return np.dot(X, self.Eq)
