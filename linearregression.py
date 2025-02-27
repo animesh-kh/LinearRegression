@@ -1,6 +1,12 @@
 import numpy as np
 
-class LinearRegression:
-    def __init__(self, X, y):
-        self.X = X
-        self.y = y
+class LinearRegressor:
+    def __init__(self):
+        self.Eq = None
+    def fit(self,X, y):
+        X = np.c_[np.ones(X.shape[0]), X]
+        X_transpose = np.transpose(X)
+        XX_t = np.dot(X_transpose, X)
+        XX_t_inverse = np.linalg.inv(XX_t)
+        XX_t_inverse_X_T = np.dot(XX_t_inverse, X_transpose)
+        self.Eq = np.dot(XX_t_inverse_X_T, y)
